@@ -61,7 +61,7 @@ enum {
   HDC1010_TEMP = (0x00),
   HDC1010_HUM = (0x01),
   HDC1010_CONF = (0x02),
-  /*!
+  /*
    * Configuration register is set using 16 bit values
    * Bit 15: 0 cleared reset | 1 software reset
    * Bit 14: Reserved, always 0
