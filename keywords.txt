@@ -1,4 +1,0 @@
-hdc1010   KEYWORD1
-begin   KEYWORD2
-temp KEYWORD2
-humidity     KEYWORD2
