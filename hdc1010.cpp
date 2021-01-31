@@ -45,7 +45,7 @@ HDC1010::HDC1010(){};
                 initiation.
 */
 
-bool begin(uint8_t i2caddr = HDC1010_ADDRESS) {
+bool HDC1010::begin(uint8_t i2caddr = HDC1010_ADDRESS) {
   if (i2c_dev) {
     delete i2c_dev;
   }
@@ -70,7 +70,7 @@ bool begin(uint8_t i2caddr = HDC1010_ADDRESS) {
     @return     The 16 bit value of the register read is returned.
 */
 
-uint16_t readRegister16(uint8_t reg) {
+uint16_t HDC1010::readRegister16(uint8_t reg) {
   uint16_t read16;
   Adafruit_BusIO_Register read_reg1 =
       Adafruit_BusIO_Register(i2c_dev, regMSB, 2);
@@ -87,7 +87,7 @@ uint16_t readRegister16(uint8_t reg) {
     @return     The 8 bit value of the register read is returned.
 */
 
-uint8_t readRegister8(uint8_t reg) {
+uint8_t HDC1010::readRegister8(uint8_t reg) {
   Adafruit_BusIO_Register read_reg = Adafruit_BusIO_Register(i2c_dev, reg, 1);
   uint8_t r_val;
   return read_reg.read(&r_val, 0x8); // change to value returned from register
@@ -102,7 +102,7 @@ uint8_t readRegister8(uint8_t reg) {
                 is the 8 bit value we want to write to the register
 */
 
-void writeRegister8(uint8_t reg, uint8_t value) {
+void HDC1010::writeRegister8(uint8_t reg, uint8_t value) {
   Adafruit_BusIO_Register write_reg = Adafruit_BusIO_Register(i2c_dev, reg, 1);
   write_reg.write(value, 0x8);
 }
@@ -116,7 +116,7 @@ void writeRegister8(uint8_t reg, uint8_t value) {
                 is the value to be written to the 16 bit register
 */
 
-void writeRegister16(uint8_t reg, uint16_t value) {
+void HDC1010::writeRegister16(uint8_t reg, uint16_t value) {
   Adafruit_BusIO_Register write_reg = Adafruit_BusIO_Register(i2c_dev, reg, 2);
   write_reg.write(value);
 }
@@ -128,7 +128,7 @@ void writeRegister16(uint8_t reg, uint16_t value) {
                 value from the device.
 */
 
-float getTemp(void) {
+float HDC1010::getTemp(void) {
   float conv_temp;
   uint16_t raw_temp = getRawTemp();
   conv_temp =
@@ -142,7 +142,7 @@ float getTemp(void) {
     @return     The 16 bit raw temperature value of the device.
 */
 
-uint16_t getRawTemp(void) { return readRegister16(HDC1010_TEMP); }
+uint16_t HDC1010::getRawTemp(void) { return readRegister16(HDC1010_TEMP); }
 
 /*!
     @brief      Gets the converted humidity value and converts it
@@ -151,7 +151,7 @@ uint16_t getRawTemp(void) { return readRegister16(HDC1010_TEMP); }
                 value from the device.
 */
 
-float getHum(void) {
+float HDC1010::getHum(void) {
   float conv_hum;
   uint16_t raw_hum = getRawHum();
   conv_hum = (raw_hum / (2 * *16)) * static_cast<float>(100);
@@ -164,7 +164,7 @@ float getHum(void) {
     @return     The 16 bit raw value of the register is returned.
 */
 
-uint16_t getRawHum(void) { return readRegister16(HDC1010_HUM); }
+uint16_t HDC1010::getRawHum(void) { return readRegister16(HDC1010_HUM); }
 
 /*!
     @brief      Gets the 8 bit register value from the called register.
@@ -173,4 +173,6 @@ uint16_t getRawHum(void) { return readRegister16(HDC1010_HUM); }
                 is used to configure various features on the HDC1010.
 */
 
-void setConfig(uint16_t configVal) { writeRegister16(HDC1010_CONF, configVal); }
+void HDC1010::setConfig(uint16_t configVal) {
+  writeRegister16(HDC1010_CONF, configVal);
+}

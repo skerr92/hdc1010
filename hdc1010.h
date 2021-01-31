@@ -1,10 +1,10 @@
 /*!
  * @file hdc1010.h
  *
- * This is a library for the AT42QT1070 I2C 7 Key Capacitive Touch Sensor
+ * This is a library for the HDC1010 I2C Temperature & Humidity Sensor
  *
  * Designed specifically to work with the Oak Development Technologies
- * AT42QT1070 Acorn
+ * HDC1010 Acorn
  * ----> urlhere
  *
  * The sensor uses I2C to communicate with additional pins that can be connected
@@ -18,10 +18,6 @@
  * MIT License, can be used, modified, or copied under license terms
  *
  */
-
-//
-// Created by seth Kerr on 12/31/20.
-//
 
 #ifndef HDC1010_HDC1010_H
 #define HDC1010_HDC1010_H
